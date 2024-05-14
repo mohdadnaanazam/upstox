@@ -1,118 +1,58 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
+ * NOTE:
+ * 1. Used BEM (Block Element Modifier) convention for naming css
+ * 2. Imports are segerated by empty lines with first imports from 3rd party libraries followed by imports from internal modules
+ * 3. Each component has a const export having an index.ts file in it if different variants came in we can export them from the same file
+ *  3.1. This way we can keep the imports clean and easy to read
+ *  3.2. This way we can also implement our storybook too easily
+ * 4. All imports are sorted in ascending order
  */
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native'
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import { AppBar } from './src/components/AppBar'
+import { Container } from './src/components/Container'
+import { HoldingRow } from './src/components/HoldingRow'
+import { PortfolioBottomSheet } from './src/components/PortfolioBottomSheet'
+import { PortfolioRow } from './src/components/PortfolioRow'
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+function App(): JSX.Element {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+    <>
+      <Container backgroundColor='white' statusBarBackgroundColor='#43165C'>
+        <AppBar />
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+        <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 200 }}>
+          <HoldingRow />
+          <HoldingRow />
+          <HoldingRow />
+        </ScrollView>
+      </Container>
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+      <PortfolioBottomSheet title={<PortfolioRow title='Profile & Loss' value='$4355.5' />}>
+        <View style={styles.portfolioBottomSheetContainer}>
+          <PortfolioRow title='Current Value:' value='$10000' />
+          <PortfolioRow title='Total Investment:' value='$10000' />
+          <PortfolioRow title='Total Profit & Loss:' value='$10000' />
+          <PortfolioRow title='Profile & Loss:' value='$4355.5' extStyles={styles.portfolioBottomSheetContainer__profitLoss} />
         </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+      </PortfolioBottomSheet>
+    </>
+  )
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    paddingTop: 20,
+    gap: 10
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  portfolioBottomSheetContainer: {
+    gap: 20
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
-export default App;
+  portfolioBottomSheetContainer__profitLoss: {
+    marginTop: 20
+  }
+})
+
+export default App
