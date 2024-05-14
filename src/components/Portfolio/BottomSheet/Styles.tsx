@@ -5,7 +5,7 @@ const { height: SCREEN_HEIGHT } = Dimensions.get('window')
 const BS_MIN_TRANSLATE_Y = SCREEN_HEIGHT / 1.15
 
 export const styles = StyleSheet.create({
-  container: {
+  bottomsheet: {
     height: SCREEN_HEIGHT,
     width: '100%',
     position: 'absolute',
@@ -19,14 +19,15 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.34,
     backgroundColor: 'white',
     shadowRadius: 6.27,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
+    elevation: 10
   },
-  container__notch: {
+  bottomsheet__notch: {
     alignSelf: 'center',
     marginVertical: 5,
     borderRadius: 100
   },
-  container__notchIcon: {
+  bottomsheet__notchIcon: {
     height: 30,
     width: 30
   }

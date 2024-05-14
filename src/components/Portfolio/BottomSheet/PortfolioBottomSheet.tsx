@@ -8,7 +8,7 @@ import Animated, { withTiming } from 'react-native-reanimated'
 import type { ReactNode } from 'react'
 
 import { styles } from "./Styles"
-import chevronUp from '../../assets/icons/chevron-up.png'
+import chevronUp from '../../../assets/icons/chevron-up.png'
 import { useAnimatedStyle, useSharedValue } from "react-native-reanimated"
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window')
@@ -63,9 +63,9 @@ export const PortfolioBottomSheet = (props: Props): JSX.Element => {
   }
 
   return (
-    <Animated.View style={[styles.container, rBottomSheetStyles]}>
-      <Pressable hitSlop={40} onPress={handleExpand} style={styles.container__notch}>
-        <Animated.Image source={chevronUp} style={[rNotchStyles, styles.container__notchIcon]} />
+    <Animated.View style={[styles.bottomsheet, rBottomSheetStyles]}>
+      <Pressable hitSlop={40} onPress={handleExpand} style={styles.bottomsheet__notch}>
+        <Animated.Image source={chevronUp} style={[rNotchStyles, styles.bottomsheet__notchIcon]} />
       </Pressable>
 
       <Animated.View style={rTitleStyle}>

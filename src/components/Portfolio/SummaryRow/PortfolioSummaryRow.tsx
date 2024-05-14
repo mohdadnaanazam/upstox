@@ -14,14 +14,14 @@ interface Props {
  * @param props 
  * @returns JSX.Element
  */
-export const PortfolioRow = (props: Props) => {
+export const PortfolioSummaryRow = (props: Props) => {
   const { title, value, extStyles } = props
 
   return (
-    <View style={[styles.container, extStyles]}>
-      <Text style={styles.container__title}>{title}</Text>
+    <View style={[styles.portfolioSummaryRow, extStyles]}>
+      <Text style={styles.portfolioSummaryRow__title}>{title}</Text>
 
-      <Text style={styles.container__value}>{value}</Text>
+      <Text style={styles.portfolioSummaryRow__value}>{value}</Text>
     </View>
   )
 }

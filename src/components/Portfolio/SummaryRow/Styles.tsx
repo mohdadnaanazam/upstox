@@ -1,16 +1,18 @@
 import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
-  container: {
+  portfolioSummaryRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  container__title: {
+  portfolioSummaryRow__title: {
     fontSize: 16,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: 'black'
   },
-  container__value: {
+  portfolioSummaryRow__value: {
     fontSize: 15,
-    fontWeight: '400'
+    fontWeight: '400',
+    color: 'black'
   },
 })

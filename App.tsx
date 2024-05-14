@@ -12,9 +12,9 @@ import { View, StyleSheet, ScrollView } from 'react-native'
 
 import { AppBar } from './src/components/AppBar'
 import { Container } from './src/components/Container'
-import { HoldingRow } from './src/components/HoldingRow'
-import { PortfolioBottomSheet } from './src/components/PortfolioBottomSheet'
-import { PortfolioRow } from './src/components/PortfolioRow'
+import { HoldingRow } from './src/components/Card/Holding'
+import { PortfolioBottomSheet } from './src/components/Portfolio/BottomSheet'
+import { PortfolioSummaryRow } from './src/components/Portfolio/SummaryRow'
 
 function App(): JSX.Element {
   return (
@@ -29,12 +29,12 @@ function App(): JSX.Element {
         </ScrollView>
       </Container>
 
-      <PortfolioBottomSheet title={<PortfolioRow title='Profile & Loss' value='$4355.5' />}>
+      <PortfolioBottomSheet title={<PortfolioSummaryRow title='Profile & Loss' value='$4355.5' />}>
         <View style={styles.portfolioBottomSheetContainer}>
-          <PortfolioRow title='Current Value:' value='$10000' />
-          <PortfolioRow title='Total Investment:' value='$10000' />
-          <PortfolioRow title='Total Profit & Loss:' value='$10000' />
-          <PortfolioRow title='Profile & Loss:' value='$4355.5' extStyles={styles.portfolioBottomSheetContainer__profitLoss} />
+          <PortfolioSummaryRow title='Current Value:' value='$10000' />
+          <PortfolioSummaryRow title='Total Investment:' value='$10000' />
+          <PortfolioSummaryRow title='Total Profit & Loss:' value='$10000' />
+          <PortfolioSummaryRow title='Profile & Loss:' value='$4355.5' extStyles={styles.portfolioBottomSheetContainer__profitLoss} />
         </View>
       </PortfolioBottomSheet>
     </>
