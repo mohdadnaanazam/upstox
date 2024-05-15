@@ -8,7 +8,7 @@
  * 4. All imports are sorted in ascending order
  */
 
-import { View, FlatList, Text } from 'react-native'
+import { View, FlatList, Text, Alert } from 'react-native'
 import { useEffect, useState } from 'react'
 
 import { AppBar } from '../../../src/components/AppBar'
@@ -21,8 +21,16 @@ import { PortfolioBottomSheet } from '../../../src/components/Portfolio/BottomSh
 import { PortfolioSummaryRow } from '../../../src/components/Portfolio/SummaryRow'
 import { styles } from './Styles'
 
+const calculateHoldingMetrics = (item: IUserHolding) => {
+  const currentValue = item.ltp * item.quantity
+  const investmentValue = item.avgPrice * item.quantity
+  const pnl = currentValue - investmentValue
+  const todayPnl = (item.close - item.ltp) * item.quantity
+
+  return { ...item, currentValue, investmentValue, pnl, todayPnl }
+}
+
 interface PortfolioData {
-  calculatedData: IUserHolding[]
   currentValueTotal: number
   totalInvestment: number
   totalPnl: number
@@ -39,15 +47,9 @@ export function HoldingScreen(): JSX.Element {
     handleFetchUserHolding()
   }, [])
 
-  // calculate portfolio
-  useEffect(() => {
-    if (userHolding.length > 0) {
-      calculatePortfolio()
-    }
-  }, [userHolding.length])
 
   /**
-   * @description Fetch user holding
+   * @description Fetch user holding and calculate portfolio metrics
    * @returns void
    */
   const handleFetchUserHolding = async (): Promise<void> => {
@@ -55,42 +57,34 @@ export function HoldingScreen(): JSX.Element {
       setIsLoading(true)
       const res = await getUserHolding()
 
-      setUserHolding(res?.data?.data?.userHolding ?? [])
+      if (res.data?.data?.userHolding?.length > 0) {
+        const data = res.data.data.userHolding.map(calculateHoldingMetrics)
+
+        const currentValueTotal = data.reduce((acc, item) => acc + item.currentValue, 0)
+        const totalInvestment = data.reduce((acc, item) => acc + item.investmentValue, 0)
+        const totalPnl = currentValueTotal - totalInvestment
+        const todaysPnl = data.reduce((acc, item) => acc + item.todayPnl, 0)
+
+        setUserHolding(data ?? [])
+
+        setPortfolioData({
+          currentValueTotal,
+          totalInvestment,
+          totalPnl,
+          todaysPnl
+        })
+
+        setIsLoading(false)
+      }
+
     } catch (error) {
+      Alert.alert('Error', 'Failed to fetch user holding')
+      setIsLoading(false)
+    } finally {
       setIsLoading(false)
     }
   }
 
-  /**
-   * @description Calculate portfolio
-   * @returns void
-   */
-  const calculatePortfolio = () => {
-    const calculatedData = userHolding.map(item => {
-      const currentValue = item.ltp * item.quantity
-      const investmentValue = item.avgPrice * item.quantity
-      const pnl = currentValue - investmentValue
-      const todayPnl = (item.close - item.ltp) * item.quantity
-
-      return { ...item, currentValue, investmentValue, pnl, todayPnl }
-    })
-
-    const currentValueTotal = calculatedData.reduce((acc, item) => acc + item.currentValue, 0)
-    const totalInvestment = calculatedData.reduce((acc, item) => acc + item.investmentValue, 0)
-    const totalPnl = currentValueTotal - totalInvestment
-    const todaysPnl = calculatedData.reduce((acc, item) => acc + item.todayPnl, 0)
-
-    const data = {
-      calculatedData,
-      currentValueTotal,
-      totalInvestment,
-      totalPnl,
-      todaysPnl
-    }
-
-    setPortfolioData(data)
-    setIsLoading(false)
-  }
 
   if (isLoading) {
     return (

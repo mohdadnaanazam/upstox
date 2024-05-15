@@ -20,11 +20,11 @@ export const styles = StyleSheet.create({
   },
   cardHolding__name: {
     fontWeight: 'bold',
-    color: 'black'
+    color: colors.black
   },
   cardHolding__price: {
     fontWeight: 'bold',
-    color: 'black'
+    color: colors.black
   },
   cardHolding__quantity: {
     color: colors.black

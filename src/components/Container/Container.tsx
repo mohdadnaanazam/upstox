@@ -1,6 +1,6 @@
+import { Fragment, useCallback } from 'react'
 import { Platform, SafeAreaView, StatusBar, StatusBarStyle, View } from 'react-native'
 import { useFocusEffect } from '@react-navigation/core'
-import { Fragment, useCallback } from 'react'
 import type { ReactNode } from 'react'
 
 import { styles } from './Styles'
