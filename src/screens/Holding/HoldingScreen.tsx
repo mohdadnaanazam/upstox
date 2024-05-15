@@ -97,7 +97,6 @@ export function HoldingScreen(): JSX.Element {
     }
   }
 
-
   if (isLoading) {
     return (
       <Container backgroundColor={colors.white} statusBarBackgroundColor={colors.primary}>
@@ -122,12 +121,12 @@ export function HoldingScreen(): JSX.Element {
         />
       </Container>
 
-      <PortfolioBottomSheet title={<PortfolioSummaryRow title='Profile & Loss:' value={portfolioData?.totalPnl || 0} />}>
+      <PortfolioBottomSheet title={<PortfolioSummaryRow title='Profit & Loss:' value={portfolioData?.totalPnl || 0} />}>
         <View style={styles.portfolioBottomSheetContainer}>
           <PortfolioSummaryRow title='Current Value:' value={portfolioData?.currentValueTotal || 0} />
           <PortfolioSummaryRow title='Total Investment:' value={portfolioData?.totalInvestment || 0} />
           <PortfolioSummaryRow title="Today's Profit & Loss:" value={portfolioData?.todaysPnl || 0} />
-          <PortfolioSummaryRow title='Profile & Loss:' value={portfolioData?.totalPnl || 0} extStyles={styles.portfolioBottomSheetContainer__profitLoss} />
+          <PortfolioSummaryRow title='Profit & Loss:' value={portfolioData?.totalPnl || 0} extStyles={styles.portfolioBottomSheetContainer__profitLoss} />
         </View>
       </PortfolioBottomSheet>
     </View>
