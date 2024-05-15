@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   },
   appBar__text: {
     color: colors.white,
-    fontSize: 15,
-    fontWeight: 'semibold'
+    fontSize: 16,
+    fontWeight: 'bold'
   }
 })

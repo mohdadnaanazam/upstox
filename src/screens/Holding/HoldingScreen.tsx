@@ -12,29 +12,41 @@ import { View, FlatList, Text, Alert } from 'react-native'
 import { useEffect, useState } from 'react'
 
 import { AppBar } from '../../../src/components/AppBar'
+import { CardHolding } from '../../../src/components/Card/Holding'
 import { colors } from '../../utils/colors'
 import { Container } from '../../../src/components/Container'
 import { getUserHolding } from '../../services/user-holding-service'
-import { CardHolding } from '../../../src/components/Card/Holding'
 import { IUserHolding } from '../../types/user-holding/response-type'
 import { PortfolioBottomSheet } from '../../../src/components/Portfolio/BottomSheet'
 import { PortfolioSummaryRow } from '../../../src/components/Portfolio/SummaryRow'
 import { styles } from './Styles'
-
-const calculateHoldingMetrics = (item: IUserHolding) => {
-  const currentValue = item.ltp * item.quantity
-  const investmentValue = item.avgPrice * item.quantity
-  const pnl = currentValue - investmentValue
-  const todayPnl = (item.close - item.ltp) * item.quantity
-
-  return { ...item, currentValue, investmentValue, pnl, todayPnl }
-}
 
 interface PortfolioData {
   currentValueTotal: number
   totalInvestment: number
   totalPnl: number
   todaysPnl: number
+}
+
+interface IUserHoldingMetrics extends IUserHolding {
+  currentValue: number
+  investmentValue: number
+  pnl: number
+  todayPnl: number
+}
+
+/**
+ * @description Calculate holding metrics
+ * @param item IUserHolding
+ * @returns IUserHoldingMetrics
+ */
+const calculateHoldingMetrics = (item: IUserHolding): IUserHoldingMetrics => {
+  const currentValue = item.ltp * item.quantity
+  const investmentValue = item.avgPrice * item.quantity
+  const pnl = currentValue - investmentValue
+  const todayPnl = (item.close - item.ltp) * item.quantity
+
+  return { ...item, currentValue, investmentValue, pnl, todayPnl }
 }
 
 export function HoldingScreen(): JSX.Element {
@@ -96,7 +108,6 @@ export function HoldingScreen(): JSX.Element {
       </Container>
     )
   }
-
 
   return (
     <View style={styles.container}>
