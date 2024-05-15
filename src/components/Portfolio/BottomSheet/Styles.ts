@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native'
+import { colors } from '../../../utils/colors'
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window')
 
@@ -11,13 +12,13 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     top: BS_MIN_TRANSLATE_Y,
     borderRadius: 10,
-    shadowColor: '#000',
+    shadowColor: colors.black,
     shadowOffset: {
       width: 0,
       height: 5
     },
     shadowOpacity: 0.34,
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     shadowRadius: 6.27,
     paddingHorizontal: 20,
     elevation: 10

@@ -4,6 +4,7 @@ import { Fragment, useCallback } from 'react'
 import type { ReactNode } from 'react'
 
 import { styles } from './Styles'
+import { colors } from '../../utils/colors'
 
 export interface ContainerProps {
   children?: ReactNode
@@ -24,7 +25,7 @@ export function Container(props: ContainerProps) {
     useCallback(() => {
       if (Platform.OS === 'android') {
         StatusBar.setTranslucent(fullScreen ?? false);
-        StatusBar.setBackgroundColor(statusBarBackgroundColor ?? 'white')
+        StatusBar.setBackgroundColor(statusBarBackgroundColor ?? colors.white)
       }
 
       StatusBar.setBarStyle(statusBarStyle)

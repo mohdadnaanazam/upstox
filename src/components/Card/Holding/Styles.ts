@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  cardholding: {
+  cardHolding: {
     flexDirection: 'column',
     justifyContent: 'space-between',
     marginHorizontal: 20,
@@ -14,11 +14,14 @@ export const styles = StyleSheet.create({
     paddingVertical: 15,
     borderColor: 'gray'
   },
-  cardholding__name: {
+  'cardHolding--last': {
+    borderBottomWidth: 0
+  },
+  cardHolding__name: {
     fontWeight: 'bold',
     color: 'black'
   },
-  cardholding__price: {
+  cardHolding__price: {
     fontWeight: 'bold',
     color: 'black'
   }

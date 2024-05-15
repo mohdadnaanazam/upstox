@@ -2,10 +2,11 @@ import { View, Text } from 'react-native'
 import type { ViewStyle } from 'react-native'
 
 import { styles } from "./Styles"
+import { IndianRupeeSymbol } from '../../../utils/constants'
 
 interface Props {
   title: string
-  value: string
+  value: number
   extStyles?: ViewStyle
 }
 
@@ -21,7 +22,7 @@ export const PortfolioSummaryRow = (props: Props) => {
     <View style={[styles.portfolioSummaryRow, extStyles]}>
       <Text style={styles.portfolioSummaryRow__title}>{title}</Text>
 
-      <Text style={styles.portfolioSummaryRow__value}>{value}</Text>
+      <Text style={styles.portfolioSummaryRow__value}>{IndianRupeeSymbol}{value.toFixed(2)}</Text>
     </View>
   )
 }
