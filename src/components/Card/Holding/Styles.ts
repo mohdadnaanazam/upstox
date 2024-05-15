@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { colors } from '../../../utils/colors'
 
 export const styles = StyleSheet.create({
   spaceBetweenRow: {
@@ -24,5 +25,14 @@ export const styles = StyleSheet.create({
   cardHolding__price: {
     fontWeight: 'bold',
     color: 'black'
+  },
+  cardHolding__quantity: {
+    color: colors.black
+  },
+  cardHolding__pnl: {
+    color: colors.black
+  },
+  cardHolding__ltp: {
+    color: colors.black
   }
 })

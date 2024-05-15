@@ -8,7 +8,7 @@ interface Props extends IUserHolding {
   isLast: boolean
 }
 
-export const HoldingRow = (props: Props): JSX.Element => {
+export const CardHolding = (props: Props): JSX.Element => {
   const { symbol, quantity, ltp, close, isLast } = props
 
   return (
@@ -17,15 +17,15 @@ export const HoldingRow = (props: Props): JSX.Element => {
         <Text style={styles.cardHolding__name}>{symbol}</Text>
         
         <View style={styles.spaceBetweenRow}>
-          <Text>LTP:</Text><Text style={styles.cardHolding__price}>{IndianRupeeSymbol}{ltp}</Text>
+          <Text style={styles.cardHolding__ltp}>LTP:</Text><Text style={styles.cardHolding__price}> {IndianRupeeSymbol} {ltp.toFixed(2)}</Text>
         </View>
       </View>
 
       <View style={styles.spaceBetweenRow}>
-        <Text>{quantity}</Text>
+        <Text style={styles.cardHolding__quantity}>{quantity}</Text>
 
         <View style={styles.spaceBetweenRow}>
-          <Text>P/L:</Text><Text style={styles.cardHolding__price}>{IndianRupeeSymbol}{close}</Text>
+          <Text style={styles.cardHolding__pnl}>P/L:</Text><Text style={styles.cardHolding__price}> {IndianRupeeSymbol} {close.toFixed(2)}</Text>
         </View>
       </View>
     </View>

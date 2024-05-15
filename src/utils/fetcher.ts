@@ -1,4 +1,5 @@
-import Axios, { AxiosRequestConfig } from "axios"
+import Axios from "axios"
+import type { AxiosRequestConfig } from "axios"
 
 export const fetcher = async (config: AxiosRequestConfig) => {
   const { url, method, data, headers } = config;
@@ -13,5 +14,5 @@ export const fetcher = async (config: AxiosRequestConfig) => {
       ...config?.headers,
       ...headers,
     },
-  });
-};
+  })
+}

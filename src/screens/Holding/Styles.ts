@@ -1,13 +1,15 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+  },
   'container--loading': {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   },
-  container__ContentContainerStyle: {
+  container__contentContainerStyle: {
     paddingBottom: 100
   },
   portfolioBottomSheetContainer: {

@@ -34,7 +34,6 @@ export const PortfolioBottomSheet = (props: Props): JSX.Element => {
     }
   })
 
-  // animated styles
   const rNotchStyles = useAnimatedStyle(() => {
     return {
       transform: [{ rotate: isExpanded.value ? withTiming('-180deg', { duration: 500 }) : withTiming('0deg', { duration: 500 }) }]

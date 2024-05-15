@@ -4,7 +4,7 @@
  * 2. Imports are segerated by empty lines with first imports from 3rd party libraries followed by imports from internal modules
  * 3. Each component has a const export having an index.ts file in it if different variants came in we can export them from the same file
  *  3.1. This way we can keep the imports clean and easy to read
- *  3.2. This way we can also implement our storybook too easily
+ *  3.2. This way we can also implement storybook easily
  * 4. All imports are sorted in ascending order
  */
 
@@ -15,7 +15,7 @@ import { AppBar } from '../../../src/components/AppBar'
 import { colors } from '../../utils/colors'
 import { Container } from '../../../src/components/Container'
 import { getUserHolding } from '../../services/user-holding-service'
-import { HoldingRow } from '../../../src/components/Card/Holding'
+import { CardHolding } from '../../../src/components/Card/Holding'
 import { IUserHolding } from '../../types/user-holding/response-type'
 import { PortfolioBottomSheet } from '../../../src/components/Portfolio/BottomSheet'
 import { PortfolioSummaryRow } from '../../../src/components/Portfolio/SummaryRow'
@@ -105,19 +105,19 @@ export function HoldingScreen(): JSX.Element {
 
 
   return (
-    <>
+    <View style={styles.container}>
       <Container backgroundColor={colors.white} statusBarBackgroundColor={colors.primary}>
         <AppBar />
 
         <FlatList
           data={userHolding}
-          renderItem={({ item, index }) => <HoldingRow {...item} isLast={index === userHolding.length - 1} />}
+          renderItem={({ item, index }) => <CardHolding {...item} isLast={index === userHolding.length - 1} />}
           keyExtractor={(item) => item.symbol}
-          contentContainerStyle={styles.container__ContentContainerStyle}
+          contentContainerStyle={styles.container__contentContainerStyle}
         />
       </Container>
 
-      <PortfolioBottomSheet title={<PortfolioSummaryRow title='Profile & Loss' value={portfolioData?.totalPnl || 0} />}>
+      <PortfolioBottomSheet title={<PortfolioSummaryRow title='Profile & Loss:' value={portfolioData?.totalPnl || 0} />}>
         <View style={styles.portfolioBottomSheetContainer}>
           <PortfolioSummaryRow title='Current Value:' value={portfolioData?.currentValueTotal || 0} />
           <PortfolioSummaryRow title='Total Investment:' value={portfolioData?.totalInvestment || 0} />
@@ -125,6 +125,6 @@ export function HoldingScreen(): JSX.Element {
           <PortfolioSummaryRow title='Profile & Loss:' value={portfolioData?.totalPnl || 0} extStyles={styles.portfolioBottomSheetContainer__profitLoss} />
         </View>
       </PortfolioBottomSheet>
-    </>
+    </View>
   )
 }
