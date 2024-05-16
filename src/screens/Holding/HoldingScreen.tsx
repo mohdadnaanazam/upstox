@@ -8,7 +8,7 @@
  * 4. All imports are sorted in ascending order
  */
 
-import { View, FlatList, Text, Alert } from 'react-native'
+import { View, FlatList, Text, Alert, ActivityIndicator } from 'react-native'
 import { useEffect, useState } from 'react'
 
 import { AppBar } from '../../../src/components/AppBar'
@@ -102,7 +102,7 @@ export function HoldingScreen(): JSX.Element {
       <Container backgroundColor={colors.white} statusBarBackgroundColor={colors.primary}>
         <AppBar />
         <View style={styles['container--loading']}>
-          <Text>Loading ...</Text>
+         <ActivityIndicator />
         </View>
       </Container>
     )
