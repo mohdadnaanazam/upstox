@@ -8,7 +8,7 @@
  * 4. All imports are sorted in ascending order
  */
 
-import { View, FlatList, Text, Alert, ActivityIndicator } from 'react-native'
+import { View, FlatList, Alert, ActivityIndicator } from 'react-native'
 import { useEffect, useState } from 'react'
 
 import { AppBar } from '../../../src/components/AppBar'
